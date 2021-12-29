@@ -1,20 +1,24 @@
 import { INITIAL_STATE } from '../../constants';
-import * as PostActionType from '../constants/PostActionType';
+import {
+    GET_POST_REQUEST,
+    GET_POST_SUCCESS,
+    GET_POST_FAILURE,
+} from '../constants/actionTypes';
 
 export default function postsReducers(state = INITIAL_STATE.posts, action) {
     switch (action.type) {
-        case PostActionType.GET_POST_REQUEST:
+        case GET_POST_REQUEST:
             return {
                 ...state,
                 isLoading: true,
             };
-        case PostActionType.GET_POST_SUCCESS:
+        case GET_POST_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 data: action.payload,
             };
-        case PostActionType.GET_POST_FAILURE:
+        case GET_POST_FAILURE:
             return {
                 ...state,
                 isLoading: false,

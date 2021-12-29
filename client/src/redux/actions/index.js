@@ -1,21 +1,25 @@
-import * as PostActionType from '../constants/PostActionType';
+import {
+    GET_POST_REQUEST,
+    GET_POST_SUCCESS,
+    GET_POST_FAILURE,
+} from '../constants/actionTypes';
 
 export function getPostsRequest() {
     return {
-        type: PostActionType.GET_POST_REQUEST,
+        type: GET_POST_REQUEST,
     };
 }
 
 export function getPostsSuccess(payload) {
     return {
-        type: PostActionType.GET_POST_SUCCESS,
+        type: GET_POST_SUCCESS,
         payload,
     };
 }
 
 export function getPostsFailure(err) {
     return {
-        type: PostActionType.GET_POST_FAILURE,
+        type: GET_POST_FAILURE,
         err,
     };
 }

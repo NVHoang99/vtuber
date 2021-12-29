@@ -3,4 +3,7 @@ export const INITIAL_STATE = {
         isLoading: false,
         data: [],
     },
+    google_auth: {
+        authData: null,
+    },
 };

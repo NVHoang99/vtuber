@@ -1,0 +1,6 @@
+export const GET_POST_REQUEST = 'GET_POST_REQUEST';
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
+export const GET_POST_FAILURE = 'GET_POST_FAILURE';
+
+export const GOOGLE_AUTH = 'GOOGLE_AUTH';
+export const GOOGLE_LOGOUT = 'GOOGLE_LOGOUT';

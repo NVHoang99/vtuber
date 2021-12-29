@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema(
     {
@@ -18,8 +18,15 @@ const schema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        tag: {
+            type: Array,
+        },
+        category: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true }
 );
 
-export const PostModel = mongoose.model("Post", schema);
+export const PostModel = mongoose.model('Post', schema);

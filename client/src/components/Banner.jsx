@@ -1,6 +1,5 @@
 import React from 'react';
-import bannerImg from '../../assets/images/banner.png';
-import './Banner.css';
+import bannerImg from '../assets/images/banner.png';
 
 function Banner() {
     return (
