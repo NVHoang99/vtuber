@@ -1,11 +1,15 @@
-import { INITIAL_STATE } from '../../constants';
 import {
     GET_POST_REQUEST,
     GET_POST_SUCCESS,
     GET_POST_FAILURE,
 } from '../constants/actionTypes';
 
-export default function postsReducers(state = INITIAL_STATE.posts, action) {
+const initialState = {
+    isLoading: false,
+    data: [],
+};
+
+export default function postsReducers(state = initialState, action) {
     switch (action.type) {
         case GET_POST_REQUEST:
             return {

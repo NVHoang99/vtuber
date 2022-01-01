@@ -13,14 +13,9 @@ function Login() {
     const responseGoogle = (response) => {
         const result = response.profileObj;
         const token = response.tokenId;
-        console.log(result);
 
-        try {
-            dispatch({ type: 'GOOGLE_AUTH', payload: { result, token } });
-            navigate('/');
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch({ type: 'LOGIN_USER', payload: { token } });
+        //navigate('/', { replace: true });
     };
 
     return (

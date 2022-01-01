@@ -1,20 +1,15 @@
-import { INITIAL_STATE } from '../../constants';
-import { GOOGLE_AUTH, GOOGLE_LOGOUT } from '../constants/actionTypes';
+import { USER_LOGGEDIN, USER_LOGGEDOUT } from '../constants/actionTypes';
 
-export default function authReducer(state = INITIAL_STATE.google_auth, action) {
+const initialState = {};
+export default function authReducer(state = initialState, action) {
     switch (action.type) {
-        case GOOGLE_AUTH:
-            localStorage.setItem('user', JSON.stringify({ ...action.payload }));
+        case USER_LOGGEDIN:
             return {
                 ...state,
-                authData: action.payload,
+                user: action.user,
             };
-        case GOOGLE_LOGOUT:
-            localStorage.clear();
-            return {
-                ...state,
-                authData: null,
-            };
+        case USER_LOGGEDOUT:
+            return initialState;
         default:
             return state;
     }
