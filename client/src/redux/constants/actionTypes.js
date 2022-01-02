@@ -6,3 +6,5 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const USER_LOGGEDIN = 'USER_LOGGEDIN';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const USER_LOGGEDOUT = 'USER_LOGGEDOUT';
+
+export const FETCH_USER_BY_TOKEN = 'FETCH_USER_BY_TOKEN';

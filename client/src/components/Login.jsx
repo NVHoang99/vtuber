@@ -11,11 +11,10 @@ function Login() {
     const navigate = useNavigate();
 
     const responseGoogle = (response) => {
-        const result = response.profileObj;
+        //const result = response.profileObj;
         const token = response.tokenId;
 
-        dispatch({ type: 'LOGIN_USER', payload: { token } });
-        //navigate('/', { replace: true });
+        dispatch({ type: 'LOGIN_USER', payload: { token, navigate } });
     };
 
     return (

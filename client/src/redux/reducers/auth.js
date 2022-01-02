@@ -1,13 +1,10 @@
 import { USER_LOGGEDIN, USER_LOGGEDOUT } from '../constants/actionTypes';
 
-const initialState = {};
+const initialState = null;
 export default function authReducer(state = initialState, action) {
     switch (action.type) {
         case USER_LOGGEDIN:
-            return {
-                ...state,
-                user: action.user,
-            };
+            return action.user;
         case USER_LOGGEDOUT:
             return initialState;
         default:

@@ -3,10 +3,13 @@ import * as actions from '../actions/userAction';
 import * as api from '../../api/userApi';
 import * as types from '../constants/actionTypes';
 
-function* login(payload) {
+function* login(action) {
     try {
-        const user = yield call(api.login, payload);
+        const { token, navigate } = action.payload;
+        const user = yield call(api.login, { token });
+
         yield put(actions.userLoggedInAction(user));
+        navigate('/', { replace: true });
     } catch (error) {
         console.log(error);
     }
@@ -17,6 +20,15 @@ function* logout() {
     yield put(actions.userLoggedOutAction);
 }
 
+function* fetchUserByToken() {
+    try {
+        const user = yield call(api.fetchUserByToken);
+        yield put(actions.userLoggedInAction(user));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function* watchLoginAction() {
     yield takeLatest(types.LOGIN_USER, login);
 }
@@ -25,8 +37,16 @@ function* watchLogoutAction() {
     yield takeLatest(types.LOGOUT_USER, logout);
 }
 
+function* watchFetchUserAction() {
+    yield takeLatest(types.FETCH_USER_BY_TOKEN, fetchUserByToken);
+}
+
 function* userSaga() {
-    yield all([watchLoginAction(), watchLogoutAction()]);
+    yield all([
+        watchLoginAction(),
+        watchLogoutAction(),
+        watchFetchUserAction(),
+    ]);
 }
 
 export default userSaga;
