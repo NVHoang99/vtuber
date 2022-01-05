@@ -1,32 +1,11 @@
-import {
-    GET_POST_REQUEST,
-    GET_POST_SUCCESS,
-    GET_POST_FAILURE,
-} from '../constants/actionTypes';
+import { GET_POST_SUCCESS } from '../constants/actionTypes';
 
-const initialState = {
-    isLoading: false,
-    data: [],
-};
+const initialState = [];
 
 export default function postsReducers(state = initialState, action) {
     switch (action.type) {
-        case GET_POST_REQUEST:
-            return {
-                ...state,
-                isLoading: true,
-            };
         case GET_POST_SUCCESS:
-            return {
-                ...state,
-                isLoading: false,
-                data: action.payload,
-            };
-        case GET_POST_FAILURE:
-            return {
-                ...state,
-                isLoading: false,
-            };
+            return action.payload;
         default:
             return state;
     }

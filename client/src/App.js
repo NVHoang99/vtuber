@@ -1,6 +1,7 @@
-import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage.jsx';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 function App() {
     return (

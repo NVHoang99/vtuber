@@ -20,7 +20,11 @@ function Login() {
     return (
         <div className='flex items-center flex-col h-screen'>
             <div className='relative w-full h-full'>
-                <img src={bg_login} className='w-full h-full object-cover' />
+                <img
+                    src={bg_login}
+                    className='w-full h-full object-cover'
+                    alt='bg_login'
+                />
                 <div className='absolute flex flex-col justify-center items-center inset-0 bg-blackOverlay'>
                     <div className='absolute top-6 bottom-6 pt-10 px-60 bg-white select-none'>
                         <img

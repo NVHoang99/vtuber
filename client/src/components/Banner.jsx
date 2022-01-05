@@ -3,7 +3,7 @@ import bannerImg from '../assets/images/banner.png';
 
 function Banner() {
     return (
-        <div class='banner'>
+        <div className='py-2 md:py-3 select-none'>
             <img src={bannerImg} alt='banner' />
         </div>
     );

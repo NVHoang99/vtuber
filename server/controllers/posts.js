@@ -1,9 +1,14 @@
-import { PostModel } from "../models/PostModel.js";
+import { PostModel } from '../models/PostModel.js';
 
 export const getPosts = async (req, res) => {
+    const pathname = req.url;
     try {
-        const posts = await PostModel.find();
-        console.log("posts", posts);
+        let posts = [];
+        if (pathname.includes('images')) {
+            posts = await PostModel.find({ category: 'image' });
+        } else {
+            posts = await PostModel.find({ category: 'video' });
+        }
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ error });

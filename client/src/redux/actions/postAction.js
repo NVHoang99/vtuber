@@ -4,9 +4,10 @@ import {
     GET_POST_FAILURE,
 } from '../constants/actionTypes';
 
-export function getPostsRequest() {
+export function getPostsRequest(payload) {
     return {
         type: GET_POST_REQUEST,
+        payload,
     };
 }
 
