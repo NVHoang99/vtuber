@@ -4,14 +4,13 @@ const schema = new mongoose.Schema(
     {
         title: {
             type: String,
-            required: true,
         },
         content: {
             type: String,
         },
         author: {
-            type: String,
-            required: true,
+            type: mongoose.Schema.Types.ObjectId,
+            // required: true,
         },
         attachments: String,
         likeCount: {
@@ -23,7 +22,9 @@ const schema = new mongoose.Schema(
         },
         category: {
             type: String,
-            required: true,
+        },
+        savedBy: {
+            type: Array,
         },
     },
     { timestamps: true }

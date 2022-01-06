@@ -1,15 +1,4 @@
-import {
-    GET_POST_REQUEST,
-    GET_POST_SUCCESS,
-    GET_POST_FAILURE,
-} from '../constants/actionTypes';
-
-export function getPostsRequest(payload) {
-    return {
-        type: GET_POST_REQUEST,
-        payload,
-    };
-}
+import { GET_POST_SUCCESS, SAVE_POST_SUCCESS } from '../constants/actionTypes';
 
 export function getPostsSuccess(payload) {
     return {
@@ -18,9 +7,8 @@ export function getPostsSuccess(payload) {
     };
 }
 
-export function getPostsFailure(err) {
+export function savePostsSuccess() {
     return {
-        type: GET_POST_FAILURE,
-        err,
+        type: SAVE_POST_SUCCESS,
     };
 }

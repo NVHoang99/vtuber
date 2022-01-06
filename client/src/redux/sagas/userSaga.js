@@ -9,7 +9,7 @@ function* login(action) {
         const user = yield call(api.login, { token });
 
         yield put(actions.userLoggedInAction(user));
-        navigate('/', { replace: true });
+        navigate(-1);
     } catch (error) {
         console.log(error);
     }

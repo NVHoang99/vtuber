@@ -13,13 +13,26 @@ function* fetchPostSaga(action) {
     }
 }
 
+function* savePostSaga(action) {
+    try {
+        const result = yield call(api.savePost, action.payload);
+        if (result) yield put(actions.savePostsSuccess());
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //watcher saga
 function* watchGetPostsAction() {
     yield takeLatest(types.GET_POST_REQUEST, fetchPostSaga);
 }
 
+function* watchSavePostAction() {
+    yield takeLatest(types.SAVE_POST_REQUEST, savePostSaga);
+}
+
 function* postSaga() {
-    yield all([watchGetPostsAction()]);
+    yield all([watchGetPostsAction(), watchSavePostAction()]);
 }
 
 export default postSaga;
