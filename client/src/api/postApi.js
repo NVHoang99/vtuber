@@ -10,3 +10,6 @@ export const savePost = (payload) =>
 
 export const unSavePost = (payload) =>
     axios.post(`${url}/posts/unsave`, payload).then((res) => res.data);
+
+export const createPost = (payload) =>
+    axios.post(`${url}/posts`, payload).then((res) => res.data);

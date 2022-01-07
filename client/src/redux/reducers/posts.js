@@ -2,6 +2,7 @@ import {
     GET_POST_SUCCESS,
     SAVE_POST_SUCCESS,
     UNSAVE_POST_SUCCESS,
+    CREATE_POST_SUCCESS,
 } from '../constants/actionTypes';
 
 const initialState = [];
@@ -19,6 +20,8 @@ export default function postsReducers(state = initialState, action) {
                 return item;
             });
             return newArr;
+        case CREATE_POST_SUCCESS:
+            return [...state, action.payload];
         default:
             return state;
     }

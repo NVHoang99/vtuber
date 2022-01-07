@@ -11,7 +11,7 @@ const Pin = ({ pin }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { savedBy, attachments, _id, author } = pin.post;
+    const { savedBy, attachments, _id, author, destination } = pin.post;
 
     let alreadySaved = !!savedBy?.filter((item) => item === user?._id)?.length;
 
@@ -87,9 +87,9 @@ const Pin = ({ pin }) => {
                             )}
                         </div>
                         <div className=' flex justify-between items-center gap-2 w-full'>
-                            {attachments?.slice(8).length > 0 ? (
+                            {destination?.slice(8).length > 0 ? (
                                 <a
-                                    href={attachments}
+                                    href={destination}
                                     target='_blank'
                                     className='bg-white flex items-center gap-2 text-black font-bold p-1 px-2 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
                                     rel='noreferrer'
@@ -98,7 +98,7 @@ const Pin = ({ pin }) => {
                                     }}
                                 >
                                     <BsFillArrowUpRightCircleFill />
-                                    {attachments?.slice(8, 17)}...
+                                    {destination?.slice(8, 17)}...
                                 </a>
                             ) : undefined}
                             {author === user?._id && (

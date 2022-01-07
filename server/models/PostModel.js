@@ -13,6 +13,7 @@ const schema = new mongoose.Schema(
             // required: true,
         },
         attachments: String,
+        destination: String,
         likeCount: {
             type: Number,
             default: 0,
@@ -25,6 +26,7 @@ const schema = new mongoose.Schema(
         },
         savedBy: {
             type: Array,
+            default: [],
         },
     },
     { timestamps: true }

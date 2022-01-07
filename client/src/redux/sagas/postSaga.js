@@ -31,6 +31,17 @@ function* unSavePostSaga(action) {
     }
 }
 
+function* createPostSaga(action) {
+    try {
+        const post = yield call(api.createPost, action.payload.post);
+        yield put(
+            actions.createPostSuccess({ post, user: action.payload.user })
+        );
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //watcher saga
 function* watchGetPostsAction() {
     yield takeLatest(types.GET_POST_REQUEST, fetchPostSaga);
@@ -44,11 +55,16 @@ function* watchUnSavePostAction() {
     yield takeLatest(types.UNSAVE_POST_REQUEST, unSavePostSaga);
 }
 
+function* watchCreatePostAction() {
+    yield takeLatest(types.CREATE_POST_REQUEST, createPostSaga);
+}
+
 function* postSaga() {
     yield all([
         watchGetPostsAction(),
         watchSavePostAction(),
         watchUnSavePostAction(),
+        watchCreatePostAction(),
     ]);
 }
 

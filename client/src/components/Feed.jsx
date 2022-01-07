@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
+import VideoList from './VideoList';
 
 function Feed() {
     const [loading, setLoading] = useState(false);
@@ -26,7 +27,15 @@ function Feed() {
     if (loading) {
         return <Spinner message={`We are adding new ideas to your feed!`} />;
     }
-    return <>{pins && <MasonryLayout pins={pins} />}</>;
+    return (
+        <>
+            {pins && location.pathname.includes('image') ? (
+                <MasonryLayout pins={pins} />
+            ) : (
+                <VideoList pins={pins} />
+            )}
+        </>
+    );
 }
 
 export default Feed;

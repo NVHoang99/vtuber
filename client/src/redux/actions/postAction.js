@@ -24,3 +24,10 @@ export function unSavePostSuccess(payload) {
         payload,
     };
 }
+
+export function createPostSuccess(payload) {
+    return {
+        type: UNSAVE_POST_SUCCESS,
+        payload,
+    };
+}
