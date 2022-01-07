@@ -68,16 +68,33 @@ export const updatePost = async (req, res) => {
 };
 
 export const savePost = async (req, res) => {
-    const { post, user } = req.body;
-    await PostModel.updateOne(
-        { _id: new mongo.ObjectId(post) },
-        { $addToSet: { savedBy: [new mongo.ObjectId(user)] } },
-        function (err, result) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(result);
-            }
-        }
-    ).clone();
+    try {
+        const { post, user } = req.body;
+        const newpost = await PostModel.findOneAndUpdate(
+            { _id: new mongo.ObjectId(post) },
+            { $addToSet: { savedBy: [new mongo.ObjectId(user)] } },
+            { new: true }
+        );
+        await newpost.save();
+        res.status(200).json(newpost);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const unSavePost = async (req, res) => {
+    try {
+        const { post, user } = req.body;
+
+        const newpost = await PostModel.findOneAndUpdate(
+            { _id: new mongo.ObjectId(post) },
+            { $pull: { savedBy: new mongo.ObjectId(user) } },
+            { new: true }
+        );
+
+        await newpost.save();
+        res.status(200).json(newpost);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 };

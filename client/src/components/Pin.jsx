@@ -11,10 +11,9 @@ const Pin = ({ pin }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { savedBy, attachments, _id, destination } = pin.post;
+    const { savedBy, attachments, _id, author } = pin.post;
 
-    let alreadySaved = !!savedBy?.filter((item) => item?._id === user?._id)
-        ?.length;
+    let alreadySaved = !!savedBy?.filter((item) => item === user?._id)?.length;
 
     const savePin = (id) => {
         if (!alreadySaved) {
@@ -27,6 +26,13 @@ const Pin = ({ pin }) => {
                 navigate('/login');
             }
         }
+    };
+
+    const unSave = (id) => {
+        dispatch({
+            type: 'UNSAVE_POST_REQUEST',
+            payload: { post: id, user: user._id },
+        });
     };
 
     return (
@@ -58,6 +64,10 @@ const Pin = ({ pin }) => {
 
                             {alreadySaved ? (
                                 <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        unSave(_id);
+                                    }}
                                     type='button'
                                     className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                                 >
@@ -76,20 +86,22 @@ const Pin = ({ pin }) => {
                                 </button>
                             )}
                         </div>
-                        {/* <div className=' flex justify-between items-center gap-2 w-full'>
-                            {destination?.slice(8).length > 0 ? (
+                        <div className=' flex justify-between items-center gap-2 w-full'>
+                            {attachments?.slice(8).length > 0 ? (
                                 <a
-                                    href={destination}
+                                    href={attachments}
                                     target='_blank'
-                                    className='bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
+                                    className='bg-white flex items-center gap-2 text-black font-bold p-1 px-2 rounded-full opacity-70 hover:opacity-100 hover:shadow-md'
                                     rel='noreferrer'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                    }}
                                 >
-                                    {' '}
                                     <BsFillArrowUpRightCircleFill />
-                                    {destination?.slice(8, 17)}...
+                                    {attachments?.slice(8, 17)}...
                                 </a>
                             ) : undefined}
-                            {postedBy?._id === user?.googleId && (
+                            {author === user?._id && (
                                 <button
                                     type='button'
                                     onClick={(e) => {
@@ -101,13 +113,13 @@ const Pin = ({ pin }) => {
                                     <FaEllipsisH />
                                 </button>
                             )}
-                        </div> */}
+                        </div>
                     </div>
                 )}
             </div>
             <Link
                 to={`/user-profile/${pin.authorInfo?._id}`}
-                className='flex gap-2 mt-2 items-center'
+                className='flex gap-2 mt-2 mb-6 items-center rounded-l-full hover:bg-[#e8ebed]'
             >
                 <img
                     className='w-7 h-7 rounded-full object-cover'

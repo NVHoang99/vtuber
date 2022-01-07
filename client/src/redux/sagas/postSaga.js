@@ -15,8 +15,17 @@ function* fetchPostSaga(action) {
 
 function* savePostSaga(action) {
     try {
-        const result = yield call(api.savePost, action.payload);
-        if (result) yield put(actions.savePostsSuccess());
+        const savedpost = yield call(api.savePost, action.payload);
+        yield put(actions.savePostSuccess(savedpost));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function* unSavePostSaga(action) {
+    try {
+        const unSavePost = yield call(api.unSavePost, action.payload);
+        yield put(actions.unSavePostSuccess(unSavePost));
     } catch (error) {
         console.log(error);
     }
@@ -31,8 +40,16 @@ function* watchSavePostAction() {
     yield takeLatest(types.SAVE_POST_REQUEST, savePostSaga);
 }
 
+function* watchUnSavePostAction() {
+    yield takeLatest(types.UNSAVE_POST_REQUEST, unSavePostSaga);
+}
+
 function* postSaga() {
-    yield all([watchGetPostsAction(), watchSavePostAction()]);
+    yield all([
+        watchGetPostsAction(),
+        watchSavePostAction(),
+        watchUnSavePostAction(),
+    ]);
 }
 
 export default postSaga;

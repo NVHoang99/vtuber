@@ -7,3 +7,6 @@ export const fetchPosts = (payload) =>
 
 export const savePost = (payload) =>
     axios.post(`${url}/posts/save`, payload).then((res) => res.data);
+
+export const unSavePost = (payload) =>
+    axios.post(`${url}/posts/unsave`, payload).then((res) => res.data);
