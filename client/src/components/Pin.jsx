@@ -23,7 +23,9 @@ const Pin = ({ pin }) => {
                     payload: { post: id, user: user._id },
                 });
             } else {
-                navigate('/login');
+                navigate('/login', {
+                    state: { from: { pathname: '/images' } },
+                });
             }
         }
     };

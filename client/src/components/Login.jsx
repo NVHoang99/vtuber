@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import bg_login from '../assets/images/bg_login.jpg';
 import logo from '../assets/images/logo.png';
@@ -9,12 +9,14 @@ import logo from '../assets/images/logo.png';
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+    const { from } = location.state;
 
     const responseGoogle = (response) => {
         //const result = response.profileObj;
         const token = response.tokenId;
 
-        dispatch({ type: 'LOGIN_USER', payload: { token, navigate } });
+        dispatch({ type: 'LOGIN_USER', payload: { token, navigate, from } });
     };
 
     return (

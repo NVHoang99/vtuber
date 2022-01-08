@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from '../components/PrivateRoute.jsx';
 import {
     Navbar,
     Search,
@@ -32,7 +33,11 @@ function PinsPage({ user }) {
                     />
                     <Route
                         path='/create-pin'
-                        element={<CreatePin user={user} />}
+                        element={
+                            <PrivateRoute>
+                                <CreatePin user={user} />
+                            </PrivateRoute>
+                        }
                     />
                     <Route
                         path='/search'

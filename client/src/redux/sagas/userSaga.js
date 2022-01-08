@@ -5,11 +5,12 @@ import * as types from '../constants/actionTypes';
 
 function* login(action) {
     try {
-        const { token, navigate } = action.payload;
+        const { token, navigate, from } = action.payload;
         const user = yield call(api.login, { token });
 
         yield put(actions.userLoggedInAction(user));
-        navigate('/');
+
+        navigate(from);
     } catch (error) {
         console.log(error);
     }
