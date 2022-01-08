@@ -4,6 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import FileBase64 from 'react-file-base64';
 import { useDispatch } from 'react-redux';
+import { WithContext as ReactTags } from 'react-tag-input';
+
+const KeyCodes = {
+    comma: 188,
+    enter: [10, 13],
+};
+
+const delimiters = [...KeyCodes.enter, KeyCodes.comma];
 
 const CreatePin = ({ user }) => {
     const [title, setTitle] = useState('');
@@ -11,12 +19,31 @@ const CreatePin = ({ user }) => {
     const [destination, setDestination] = useState('');
     const [category, setCategory] = useState('image');
     const [imageAsset, setImageAsset] = useState();
-    const [tag, setTag] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [suggestions, setSuggestions] = useState([
+        { id: 'Duca', text: 'Duca' },
+        { id: 'Banmai', text: 'Banmai' },
+    ]);
     const [video, setVideo] = useState('');
     const [link, setLink] = useState('');
     const [fields, setFields] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const handleDelete = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
+    };
+
+    const handleAddition = (tag) => {
+        setTags([...tags, tag]);
+    };
+
+    const handleDrag = (tag, currPos, newPos) => {
+        const newTags = [...tags].slice();
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+        setTags(newTags);
+    };
 
     const savePin = () => {
         if (category === 'image') {
@@ -30,7 +57,7 @@ const CreatePin = ({ user }) => {
                             destination,
                             category,
                             attachments: imageAsset,
-                            tag,
+                            tag: tags,
                             author: user._id,
                         },
                         user,
@@ -54,7 +81,7 @@ const CreatePin = ({ user }) => {
                             content: about,
                             category,
                             attachments: video,
-                            tag,
+                            tag: tags,
                             author: user._id,
                         },
                         user,
@@ -219,12 +246,31 @@ const CreatePin = ({ user }) => {
                             />
                         )}
 
-                        <input
+                        {/* <input
                             type='text'
                             vlaue={tag}
                             onChange={(e) => setTag(e.target.value)}
                             placeholder='Add your tags '
                             className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2'
+                        /> */}
+
+                        <ReactTags
+                            tags={tags}
+                            suggestions={suggestions}
+                            handleDelete={handleDelete}
+                            handleAddition={handleAddition}
+                            handleDrag={handleDrag}
+                            delimiters={delimiters}
+                            classNames={{
+                                tags: 'pt-3',
+                                tagInput: 'mt-3',
+                                tagInputField: 'border-none p-2',
+                                selected: 'mt-3',
+                                tag: 'mr-2 p-1 border-none bg-secondaryColor',
+                                remove: 'pl-2',
+                                suggestions: 'mt-1 p-2 cursor-pointer',
+                                // activeSuggestion: 'activeSuggestionClass'
+                            }}
                         />
 
                         <div className='flex justify-end items-end mt-5'>
