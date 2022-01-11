@@ -79,7 +79,10 @@ function HomePage() {
                 ref={scrollRef}
             >
                 <Routes>
-                    <Route path='/user/profile/:id' element={<UserProfile />} />
+                    <Route
+                        path='/user/profile/:userId'
+                        element={<UserProfile />}
+                    />
                     <Route path='/*' element={<PinsPage user={user} />} />
                 </Routes>
             </div>

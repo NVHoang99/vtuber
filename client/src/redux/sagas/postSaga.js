@@ -42,6 +42,15 @@ function* createPostSaga(action) {
     }
 }
 
+function* addCommentSaga(action) {
+    try {
+        const post = yield call(api.addComment, action.payload);
+        yield put(actions.addCommentSuccess(post));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 //watcher saga
 function* watchGetPostsAction() {
     yield takeLatest(types.GET_POST_REQUEST, fetchPostSaga);
@@ -59,12 +68,17 @@ function* watchCreatePostAction() {
     yield takeLatest(types.CREATE_POST_REQUEST, createPostSaga);
 }
 
+function* watchAddCommentAction() {
+    yield takeLatest(types.ADD_COMMENT_REQUEST, addCommentSaga);
+}
+
 function* postSaga() {
     yield all([
         watchGetPostsAction(),
         watchSavePostAction(),
         watchUnSavePostAction(),
         watchCreatePostAction(),
+        watchAddCommentAction(),
     ]);
 }
 

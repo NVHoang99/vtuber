@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { FaEllipsisH } from 'react-icons/fa';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Pin = ({ pin }) => {
+const PinOther = ({ pin }) => {
     const user = useSelector((state) => state.authReducer);
     const [postHovered, setPostHovered] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { savedBy, attachments, _id, author, destination } = pin.post;
+    const { savedBy, attachments, _id, author, destination } = pin;
 
     let alreadySaved = !!savedBy?.filter((item) => item === user?._id)?.length;
 
@@ -119,21 +119,8 @@ const Pin = ({ pin }) => {
                     </div>
                 )}
             </div>
-            <Link
-                to={`/user/profile/${pin.authorInfo?._id}`}
-                className='flex gap-2 mt-2 mb-6 items-center rounded-l-full hover:bg-[#e8ebed]'
-            >
-                <img
-                    className='w-7 h-7 rounded-full object-cover'
-                    src={pin.authorInfo?.avatar}
-                    alt='user-profile'
-                />
-                <p className='font-semibold capitalize text-sm'>
-                    {pin.authorInfo?.fullName}
-                </p>
-            </Link>
         </div>
     );
 };
 
-export default Pin;
+export default PinOther;

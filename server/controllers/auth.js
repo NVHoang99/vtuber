@@ -113,3 +113,14 @@ export const getUserByToken = (req, res) => {
     let user = req.user;
     res.json(user);
 };
+
+export const getUserById = async (req, res) => {
+    const params = req.params;
+
+    try {
+        let user = await UserModel.findOne({ _id: params.userId });
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

@@ -98,3 +98,67 @@ export const unSavePost = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const getPostDetail = async (req, res) => {
+    const url = req.url;
+    const pinId = url.slice(8);
+
+    try {
+        let post = await PostModel.findOne({ _id: pinId });
+        let user = await UserModel.findOne({ _id: post.author });
+        res.status(200).json({ post, authorInfo: user });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const addComment = async (req, res) => {
+    try {
+        const { pinId, comment, user } = req.body;
+        const post = await PostModel.findOneAndUpdate(
+            { _id: pinId },
+            {
+                $addToSet: {
+                    comments: [
+                        {
+                            comment,
+                            postedBy: {
+                                userId: user._id,
+                                avatar: user.avatar,
+                                fullName: user.fullName,
+                            },
+                        },
+                    ],
+                },
+            },
+            { new: true }
+        );
+        await post.save();
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const getCreatedPost = async (req, res) => {
+    const params = req.params;
+
+    try {
+        let posts = await PostModel.find({ author: params.userId });
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const getSavedPost = async (req, res) => {
+    const params = req.params;
+
+    try {
+        let posts = await PostModel.find({ savedBy: params.userId });
+        console.log(posts);
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
