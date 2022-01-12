@@ -155,8 +155,10 @@ export const getSavedPost = async (req, res) => {
     const params = req.params;
 
     try {
-        let posts = await PostModel.find({ savedBy: params.userId });
-        console.log(posts);
+        let posts = await PostModel.find({
+            savedBy: new mongo.ObjectId(params.userId),
+        });
+
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ error });

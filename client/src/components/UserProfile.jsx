@@ -4,6 +4,7 @@ import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
 import { fetchUserById } from '../api/userApi';
 import { fetchCreatedPost, fetchSavedPost } from '../api/postApi';
+import VideoList from '../components/VideoList';
 
 const activeBtnStyles =
     'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
@@ -82,8 +83,28 @@ const UserProfile = () => {
                     </button>
                 </div>
 
+                {pins?.length !== 0 && (
+                    <div className='px-4 text-lg font-bold'>Image</div>
+                )}
+
                 <div className='px-2'>
-                    <MasonryLayout pins={pins} />
+                    <MasonryLayout
+                        pins={pins?.filter((item) => item.category === 'image')}
+                    />
+                </div>
+
+                {pins?.length !== 0 && (
+                    <div className='px-4 text-lg font-bold'>Video</div>
+                )}
+
+                <div className='px-2'>
+                    {pins?.length !== 0 && (
+                        <VideoList
+                            pins={pins?.filter(
+                                (item) => item.category === 'video'
+                            )}
+                        />
+                    )}
                 </div>
 
                 {pins?.length === 0 && (
