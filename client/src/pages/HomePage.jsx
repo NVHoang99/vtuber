@@ -25,6 +25,15 @@ function HomePage() {
         scrollRef.current.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        const currentMode = localStorage.getItem('theme');
+        if (currentMode === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.add('light');
+        }
+    }, []);
+
     return (
         <div className='flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out'>
             {/* sidebar for desktop... */}
@@ -61,11 +70,11 @@ function HomePage() {
                 </div>
 
                 {toggleSidebar && (
-                    <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
-                        <div className='absolute w-full flex justify-end items-center p-2'>
+                    <div className='fixed w-4/5 bg-white dark:bg-[#212121] h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
+                        <div className='absolute w-full flex justify-end items-center p-2 '>
                             <AiFillCloseCircle
                                 fontSize={30}
-                                className='cursor-pointer'
+                                className='cursor-pointer z-50 dark:text-white'
                                 onClick={() => setToggleSidebar(false)}
                             />
                         </div>
@@ -75,7 +84,7 @@ function HomePage() {
             </div>
 
             <div
-                className='pb-2 flex-1 h-screen overflow-y-scoll'
+                className='pb-2 flex-1 h-screen overflow-y-scoll dark:bg-[#181818] md:ml-[188px]'
                 ref={scrollRef}
             >
                 <Routes>

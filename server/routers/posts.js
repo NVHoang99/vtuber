@@ -9,6 +9,7 @@ import {
     addComment,
     getCreatedPost,
     getSavedPost,
+    searchPost,
 } from '../controllers/posts.js';
 
 const router = express.Router();
@@ -23,4 +24,5 @@ router.get('/detail/*', getPostDetail);
 router.post('/comment', addComment);
 router.get('/created/:userId', getCreatedPost);
 router.get('/saved/:userId', getSavedPost);
+router.get('/search', searchPost);
 export default router;

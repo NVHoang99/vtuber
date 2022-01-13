@@ -121,14 +121,14 @@ const Pin = ({ pin }) => {
             </div>
             <Link
                 to={`/user/profile/${pin.authorInfo?._id}`}
-                className='flex gap-2 mt-2 mb-6 items-center rounded-l-full hover:bg-[#e8ebed]'
+                className='flex gap-2 mt-2 mb-6 items-center rounded-l-full hover:bg-[#e8ebed] dark:hover:bg-gray-500'
             >
                 <img
                     className='w-7 h-7 rounded-full object-cover'
                     src={pin.authorInfo?.avatar}
                     alt='user-profile'
                 />
-                <p className='font-semibold capitalize text-sm'>
+                <p className='font-semibold capitalize text-sm dark:text-white '>
                     {pin.authorInfo?.fullName}
                 </p>
             </Link>

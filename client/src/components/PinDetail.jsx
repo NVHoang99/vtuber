@@ -52,7 +52,7 @@ const PinDetail = ({ user }) => {
     return (
         <>
             {pinDetail && (
-                <div className='flex xl:flex-row flex-col m-auto bg-white max-w-[1500px] rounded-[32px]'>
+                <div className='flex xl:flex-row flex-col m-auto bg-white dark:bg-[#212121] dark:text-white max-w-[1500px] rounded-[32px]'>
                     <div className='flex justify-center items-center md:items-start flex-initial select-none md:w-1/2'>
                         <img
                             className='rounded-t-3xl rounded-b-lg w-full'
@@ -71,7 +71,7 @@ const PinDetail = ({ user }) => {
                                     }}
                                     className='bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none'
                                 >
-                                    <MdDownloadForOffline />
+                                    <MdDownloadForOffline className='dark:text-[#181818]' />
                                 </a>
                             </div>
                             {pinDetail.post.destination?.slice(8).length > 0 ? (
@@ -100,7 +100,7 @@ const PinDetail = ({ user }) => {
                         </div>
                         <Link
                             to={`/user/profile/${pinDetail.authorInfo._id}`}
-                            className='flex gap-2 mt-5 items-center bg-white rounded-lg '
+                            className='flex gap-2 mt-5 items-center bg-white dark:bg-[#212121] rounded-lg '
                         >
                             <img
                                 src={pinDetail.authorInfo.avatar}
@@ -111,6 +111,7 @@ const PinDetail = ({ user }) => {
                                 {pinDetail.authorInfo.fullName}
                             </p>
                         </Link>
+
                         <h2 className='mt-8 text-xl'>Comments</h2>
                         <div className='max-h-370 overflow-y-auto'>
                             {pinDetail.post?.comments?.map((item, index) => (
@@ -142,7 +143,7 @@ const PinDetail = ({ user }) => {
                                     />
                                 </Link>
                                 <input
-                                    className=' flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300'
+                                    className=' flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300 dark:text-black'
                                     type='text'
                                     placeholder='Add a comment'
                                     value={comment}

@@ -7,9 +7,9 @@ import { fetchCreatedPost, fetchSavedPost } from '../api/postApi';
 import VideoList from '../components/VideoList';
 
 const activeBtnStyles =
-    'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
+    'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none dark:text-white';
 const notActiveBtnStyles =
-    'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
+    'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none dark:text-white';
 
 const UserProfile = () => {
     const [user, setUser] = useState();
@@ -33,8 +33,8 @@ const UserProfile = () => {
     if (!user) return <Spinner message='Loading profile' />;
 
     return (
-        <div className='pb-2 h-full justify-center items-center'>
-            <div className='flex flex-col pb-5'>
+        <div className='h-full justify-center items-center '>
+            <div className='flex flex-col'>
                 <div className='flex flex-col mb-7'>
                     <div className='flex flex-col justify-center items-center'>
                         <img
@@ -48,7 +48,7 @@ const UserProfile = () => {
                             alt='user-pic'
                         />
                     </div>
-                    <h1 className='font-bold text-2xl text-center mt-3'>
+                    <h1 className='font-bold text-2xl text-center mt-3 dark:text-white'>
                         {user.fullName}
                     </h1>
                 </div>
@@ -83,21 +83,24 @@ const UserProfile = () => {
                     </button>
                 </div>
 
-                {pins?.length !== 0 && (
-                    <div className='px-4 text-lg font-bold'>Image</div>
-                )}
+                <div className='px-2 dark:bg-[#181818] mt-6'>
+                    {pins?.length !== 0 && (
+                        <div className='px-4 text-lg font-bold dark:text-white pt-2'>
+                            Image
+                        </div>
+                    )}
 
-                <div className='px-2'>
                     <MasonryLayout
                         pins={pins?.filter((item) => item.category === 'image')}
                     />
                 </div>
 
-                {pins?.length !== 0 && (
-                    <div className='px-4 text-lg font-bold'>Video</div>
-                )}
-
-                <div className='px-2'>
+                <div className='px-2 dark:bg-[#181818] pb-2'>
+                    {pins?.length !== 0 && (
+                        <div className='px-4 text-lg font-bold dark:text-white py-2'>
+                            Video
+                        </div>
+                    )}
                     {pins?.length !== 0 && (
                         <VideoList
                             pins={pins?.filter(
@@ -108,7 +111,7 @@ const UserProfile = () => {
                 </div>
 
                 {pins?.length === 0 && (
-                    <div className='flex justify-center font-bold items-center w-full text-1xl mt-2'>
+                    <div className='flex justify-center dark:bg-[#181818] dark:text-white font-bold items-center w-full text-1xl pb-4'>
                         No Pins Found!
                     </div>
                 )}

@@ -164,3 +164,20 @@ export const getSavedPost = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const searchPost = async (req, res) => {
+    const params = req.query;
+
+    try {
+        let posts = await PostModel.find({
+            $or: [
+                { title: { $regex: params.txt, $options: 'i' } },
+                { content: { $regex: params.txt, $options: 'i' } },
+                { 'tag.text': { $regex: params.txt, $options: 'i' } },
+            ],
+        });
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

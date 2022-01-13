@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000';
+const url = 'https://vtuber-fandom.herokuapp.com';
 
 export const fetchPosts = (payload) =>
     axios.get(`${url}/posts/${payload}`).then((res) => res.data);
@@ -25,3 +25,12 @@ export const fetchCreatedPost = (payload) =>
 
 export const fetchSavedPost = (payload) =>
     axios.get(`${url}/posts/saved/${payload}`).then((res) => res.data);
+
+export const searchPost = (payload) =>
+    axios
+        .get(`${url}/posts/search`, {
+            params: {
+                txt: payload,
+            },
+        })
+        .then((res) => res.data);

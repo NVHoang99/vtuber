@@ -28,13 +28,13 @@ function Login() {
                     alt='bg_login'
                 />
                 <div className='absolute flex flex-col justify-center items-center inset-0 bg-blackOverlay'>
-                    <div className='absolute top-6 bottom-6 pt-10 px-60 bg-white select-none'>
+                    <div className='absolute top-16 md:top-6 bottom-16 md:bottom-6 pt-10 px-10 md:px-60 left-4 right-4 md:left-auto md:right-auto bg-white select-none rounded-lg'>
                         <img
                             src={logo}
                             className='w-12 h-12 rounded-md m-auto'
                             alt='logo'
                         />
-                        <h1 className='text-xl font-semibold mt-5 select-none'>
+                        <h1 className='text-xl font-semibold mt-5 select-none text-center'>
                             Đăng nhập vào Vtuber Fandom
                         </h1>
                         <div className='mt-10 rounded-[44px]'>

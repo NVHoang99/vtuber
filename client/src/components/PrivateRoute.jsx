@@ -7,7 +7,9 @@ function PrivateRoute({ children }) {
     const location = useLocation();
 
     if (!cookies.token)
-        return <Navigate to='/login' state={{ from: location }} />;
+        return (
+            <Navigate to='/login' state={{ from: location }} replace={false} />
+        );
     return children;
 }
 

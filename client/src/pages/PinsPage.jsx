@@ -14,8 +14,8 @@ function PinsPage({ user }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     return (
-        <div className='px-2 md:px-5'>
-            <div className='bg-gray-50'>
+        <div className='px-2 md:px-5 dark:bg-[#181818] '>
+            <div className='bg-gray-50 rounded-sm'>
                 <Navbar
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}

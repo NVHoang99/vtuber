@@ -20,7 +20,7 @@ const CreatePin = ({ user }) => {
     const [category, setCategory] = useState('image');
     const [imageAsset, setImageAsset] = useState();
     const [tags, setTags] = useState([]);
-    const [suggestions, setSuggestions] = useState([
+    const [suggestions] = useState([
         { id: 'Duca', text: 'Duca' },
         { id: 'Banmai', text: 'Banmai' },
     ]);
@@ -121,7 +121,7 @@ const CreatePin = ({ user }) => {
             )}
             <div className='flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5  w-full rounded-xl'>
                 <div className='bg-secondaryColor p-3 flex flex-0.7 w-full rounded-lg'>
-                    <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420 rounded-lg'>
+                    <div className='flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420 rounded-lg '>
                         {category === 'image' ? (
                             !imageAsset ? (
                                 <label>
@@ -135,7 +135,7 @@ const CreatePin = ({ user }) => {
                                             </p>
                                         </div>
 
-                                        <p className='mt-32 text-gray-400'>
+                                        <p className='mt-32 text-gray-400 break-words mx-14 md:mx-0'>
                                             Recommendation: Use high-quality
                                             JPG, JPEG, SVG, PNG, GIF or TIFF
                                             less than 20MB

@@ -1,6 +1,6 @@
 module.exports = {
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'class', // or 'media' or 'class'
     theme: {
         extend: {
             flex: {
@@ -42,7 +42,7 @@ module.exports = {
                 },
             },
             animation: {
-                'slide-in': 'slide-in 0.5s ease-out',
+                'slide-in': 'slide-in 0.3s ease-out',
                 'slide-fwd':
                     ' slide-fwd 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both',
             },
